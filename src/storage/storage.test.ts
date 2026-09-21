@@ -107,6 +107,21 @@ test("больше 200 запусков — остаются последние 
   expect(await Bun.file(join(base, "history.jsonl.tmp")).exists()).toBe(false);
 });
 
+test("last.json — только последний запуск, объектом и с output", async () => {
+  const base = join(root, "последний");
+
+  for (const score of [10, 20]) {
+    await writeRecord(base, createRecord(score));
+  }
+
+  const text = await Bun.file(join(base, "last.json")).text();
+  const last = JSON.parse(text);
+
+  expect(text.startsWith('{\n  "version": 1')).toBe(true);
+  expect(last.evals[0].cases[0].trials[0].score).toBe(20);
+  expect(last.evals[0].cases[0].trials[0].output).toEqual({ verdict: "refund" });
+});
+
 test("latest.json остаётся читаемым человеком", async () => {
   const base = join(root, "третий");
   await writeRecord(base, createRecord(77));

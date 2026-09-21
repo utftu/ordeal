@@ -104,6 +104,7 @@ total=3 passed=1 failed=2 time=2.1s
 
 - `.ordeal/history.jsonl` — строка на каждый запуск, без `output`. Когда строк становится больше 200, остаются последние 100.
 - `.ordeal/latest.json` — три последних запуска целиком, с `output`, новый сверху.
+- `.ordeal/last.json` — только последний запуск, одним объектом, с `output`.
 
 ```json
 {

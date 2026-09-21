@@ -67,4 +67,7 @@ export async function writeRecord(root: string, record: RunRecord): Promise<void
   const next = [record, ...previous].slice(0, latestKeep);
 
   await Bun.write(latestPath, JSON.stringify(next, null, 2));
+
+  // last.json — только последний запуск, объектом, а не массивом: открыл и читаешь.
+  await Bun.write(join(root, "last.json"), JSON.stringify(record, null, 2));
 }
