@@ -1,6 +1,6 @@
 {
   "name": "ordeal",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Запуск эвалов для сервисов на ИИ в изолированных воркерах Bun",
   "repository": {
     "type": "git",
